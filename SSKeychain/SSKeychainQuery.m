@@ -243,7 +243,7 @@
 		}
 #else
         default:
-            message = (__bridge_transfer NSString *)SecCopyErrorMessageString(code, NULL);
+            message = SAFE_ARC_AUTORELEASE((__bridge_transfer NSString *)SecCopyErrorMessageString(code, NULL));
 #endif
     }
 
