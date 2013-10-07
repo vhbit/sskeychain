@@ -8,6 +8,7 @@
 
 #import "SSKeychainQuery.h"
 #import "SSKeychain.h"
+#import "SSKeychain-Mem.h"
 
 @implementation SSKeychainQuery
 
@@ -101,7 +102,10 @@
 		return nil;
 	}
 
-    return (__bridge_transfer NSArray *)result;
+    // under ARC __bridge_transfer will do transfer
+    // and SAFE_ARC_AUTORELEASE will turn into noop
+    // and vice versa
+    return SAFE_ARC_AUTORELEASE((__bridge_transfer NSArray *)result);
 }
 
 
@@ -125,7 +129,8 @@
 		return NO;
 	}
 
-    self.passwordData = (__bridge_transfer NSData *)result;
+    self.passwordData = (__bridge NSData *)result;
+    CFRelease(result);
     return YES;
 }
 
