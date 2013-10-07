@@ -157,7 +157,7 @@
 
 - (NSString *)password {
     if ([self.passwordData length]) {
-        return [[NSString alloc] initWithData:self.passwordData encoding:NSUTF8StringEncoding];
+        return SAFE_ARC_AUTORELEASE([[NSString alloc] initWithData:self.passwordData encoding:NSUTF8StringEncoding]);
     }
     return nil;
 }
