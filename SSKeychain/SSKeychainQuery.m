@@ -105,7 +105,10 @@
     // under ARC __bridge_transfer will do transfer
     // and SAFE_ARC_AUTORELEASE will turn into noop
     // and vice versa
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-bridge-casts-disallowed-in-nonarc"
     return SAFE_ARC_AUTORELEASE((__bridge_transfer NSArray *)result);
+#pragma clang diagnostic pop
 }
 
 
@@ -243,7 +246,10 @@
 		}
 #else
         default:
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-bridge-casts-disallowed-in-nonarc"
             message = SAFE_ARC_AUTORELEASE((__bridge_transfer NSString *)SecCopyErrorMessageString(code, NULL));
+#pragma clang diagnostic pop
 #endif
     }
 
