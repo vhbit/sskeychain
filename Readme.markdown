@@ -7,7 +7,7 @@ SSKeychain is a simple wrapper for accessing accounts, getting passwords, settin
 1. Add `Security.framework` to your target
 2. Add `SSKeychain.h`, `SSKeychain.m`, `SSKeychainQuery.h`, and `SSKeychainQuery.m` to your project.
 
-SSKeychain requires ARC.
+This fork works both with ARC and MRC.
 
 Note: Currently SSKeychain does not support Mac OS 10.6.
 
