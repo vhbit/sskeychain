@@ -133,7 +133,9 @@
 	}
 
     self.passwordData = (__bridge NSData *)result;
-    CFRelease(result);
+    if (result)
+        CFRelease(result);
+
     return YES;
 }
 
